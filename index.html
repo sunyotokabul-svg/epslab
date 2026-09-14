@@ -707,16 +707,10 @@
     <p class="section-sub">Tonton cara kerja website di bawah ini, lalu coba langsung sebagai siswa maupun sebagai admin menggunakan akun demo yang sudah disiapkan.</p>
 
     <div class="video-wrap" id="videoWrap">
-      <video id="videoDemo" controls playsinline style="display:none;"></video>
-      <div class="video-placeholder" id="videoPlaceholder">
-        <div class="play-ico">▶</div>
-        <div style="font-weight:700;color:white;">Video Demo EPSLAB</div>
-        <div style="font-size:.85rem;max-width:360px;">Unggah video demo penggunaan website di sini agar bisa langsung ditonton pengunjung.</div>
-        <label class="video-upload-label">
-          ⬆️ Unggah Video Demo
-          <input type="file" accept="video/*" id="videoInput" />
-        </label>
-      </div>
+      <video id="videoDemo" controls playsinline preload="metadata">
+        <source src="demo-epslab.mp4" type="video/mp4" />
+        Browser Anda tidak mendukung pemutaran video HTML5.
+      </video>
     </div>
 
     <div class="demo-grid">
@@ -962,21 +956,6 @@
       document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
     });
   });
-
-  // Upload & tampilkan video demo langsung dari file lokal (browser-side, tanpa server)
-  const videoInput = document.getElementById('videoInput');
-  const videoDemo = document.getElementById('videoDemo');
-  const videoPlaceholder = document.getElementById('videoPlaceholder');
-  if (videoInput) {
-    videoInput.addEventListener('change', function (e) {
-      const file = e.target.files && e.target.files[0];
-      if (!file) return;
-      const url = URL.createObjectURL(file);
-      videoDemo.src = url;
-      videoDemo.style.display = 'block';
-      videoPlaceholder.style.display = 'none';
-    });
-  }
 
   // Salin teks (nama siswa / token / id admin / password) ke clipboard
   function copyTeks(teks, btn) {
